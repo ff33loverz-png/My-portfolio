@@ -1,0 +1,246 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .hero {
+    background: #0f0f0f;
+    padding: 60px 24px 50px;
+    text-align: center;
+    border-radius: 16px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(99,102,241,0.15);
+    border: 1px solid rgba(99,102,241,0.4);
+    color: #a5b4fc;
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+  }
+  .hero h1 {
+    font-size: 38px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 span { color: #818cf8; }
+  .hero p {
+    font-size: 16px;
+    color: #9ca3af;
+    max-width: 420px;
+    margin: 0 auto 28px;
+    line-height: 1.6;
+  }
+  .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: #6366f1;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #4f46e5; }
+  .btn-outline {
+    background: transparent;
+    color: #d1d5db;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid #374151;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .btn-outline:hover { border-color: #6366f1; color: #a5b4fc; }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6366f1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .section-sub {
+    font-size: 15px;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .about-card {
+    background: var(--surface-1);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+  .avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+  }
+  .about-text h2 { font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+  .about-text p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; max-width: 480px; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .service-card {
+    background: var(--surface-1);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 18px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .service-card:hover { border-color: #6366f1; transform: translateY(-2px); }
+  .service-icon {
+    width: 46px; height: 46px;
+    background: rgba(99,102,241,0.1);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+    font-size: 22px;
+  }
+  .service-card h3 { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+  .service-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+  .contact-card {
+    background: #0f0f0f;
+    border-radius: 14px;
+    padding: 32px;
+    text-align: center;
+  }
+  .contact-card h2 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .contact-card p { font-size: 14px; color: #9ca3af; margin-bottom: 24px; }
+  .contact-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .contact-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 11px 20px;
+    border-radius: 10px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none;
+    border: none; cursor: pointer;
+  }
+  .wa-btn { background: #25d366; color: #fff; }
+  .wa-btn:hover { background: #1ebe5d; }
+  .em-btn { background: #374151; color: #e5e7eb; }
+  .em-btn:hover { background: #4b5563; }
+
+  .footer { text-align: center; padding: 20px 0 4px; font-size: 12px; color: var(--text-muted); }
+</style>
+
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Ali Raza — Shopify & Ads Expert landing page</h2>
+
+<div class="hero">
+  <div class="badge">Available for new projects</div>
+  <h1>Scale Your Brand with<br><span>Shopify & Paid Ads</span></h1>
+  <p>Complete Shopify store setup, stunning design, and high-converting Meta & TikTok ad campaigns — all in one place.</p>
+  <div class="cta-row">
+    <a href="https://wa.me/923705744388" class="btn-primary">Let's Work Together</a>
+    <a href="mailto:nuvipy.agy@gamil.com" class="btn-outline">Send an Email</a>
+  </div>
+</div>
+
+<div style="margin-bottom:36px">
+  <div class="section-label">Who I Am</div>
+  <div class="section-title">About Me</div>
+  <div class="about-card">
+    <div class="avatar">AR</div>
+    <div class="about-text">
+      <h2>Ali Raza</h2>
+      <p>I help brands and entrepreneurs build and scale their e-commerce businesses. From zero to a fully launched Shopify store, to running profitable Meta and TikTok ad campaigns — I handle everything so you can focus on your business.</p>
+    </div>
+  </div>
+</div>
+
+<div style="margin-bottom:36px">
+  <div class="section-label">What I Offer</div>
+  <div class="section-title">My Services</div>
+  <div class="section-sub">Everything you need to launch and grow online</div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🛍️</div>
+      <h3>Shopify Complete Setup</h3>
+      <p>Full store setup from scratch — domain, payments, products, and more.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <h3>Store Design</h3>
+      <p>Custom, conversion-focused designs that look great and sell better.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📣</div>
+      <h3>Meta Ads</h3>
+      <p>Facebook & Instagram ad campaigns built to drive real results and ROI.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎵</div>
+      <h3>TikTok Ads</h3>
+      <p>Scroll-stopping TikTok creatives and campaigns that reach new audiences.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📈</div>
+      <h3>Marketing Strategy</h3>
+      <p>Data-driven strategies to scale your brand and cut wasted ad spend.</p>
+    </div>
+  </div>
+</div>
+
+<div class="contact-card">
+  <h2>Ready to grow your store?</h2>
+  <p>Drop me a message on WhatsApp or email — I'll get back to you fast.</p>
+  <div class="contact-links">
+    <a href="https://wa.me/923705744388" class="contact-btn wa-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="mailto:nuvipy.agy@gamil.com" class="contact-btn em-btn">
+      <i class="ti ti-mail" aria-hidden="true" style="font-size:18px"></i>
+      Email Me
+    </a>
+  </div>
+</div>
+
+<div class="footer">© 2026 Ali Raza · Shopify & Ads Expert</div>
